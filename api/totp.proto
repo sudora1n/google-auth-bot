@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package grpc_service;
+
+option go_package = "github.com/sudora1n/google-auth-bot/internal/microservice-api/proto";
+
+message ToTPObject {
+    string id = 1;
+    string name = 2;
+}
+
+service ToTPs {
+    rpc AddToTP(AddToTPRequest) returns (AddToTPResponse) {}
+    rpc FindAllToTP(FindAllToTPRequest) returns (FindAllToTPResponse) {}
+    rpc RemoveToTP(RemoveToTPRequest) returns (RemoveToTPResponse) {}
+}
+
+message AddToTPRequest {
+    uint64 userId = 1;
+    string totp = 2;
+    string name = 3; 
+}
+
+message AddToTPResponse {
+    bool status = 1;
+}
+
+message FindAllToTPRequest {
+    uint64 userId = 1;
+}
+
+message FindAllToTPResponse {
+    repeated ToTPObject response = 2;
+}
+
+message RemoveToTPRequest {
+    uint64 userId = 1;
+    string totp = 2;
+}
+
+message RemoveToTPResponse {
+    bool status = 1;
+}

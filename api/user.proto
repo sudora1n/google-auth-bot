@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package grpc_service;
+
+option go_package = "github.com/sudora1n/google-auth-bot/internal/microservice-api/proto";
+
+message UserObject {
+    uint64 userId = 1;
+    string lang = 2;
+}
+
+service Users {
+    rpc CreateOrReturnUser(CreateOrReturnUserRequest) returns (CreateOrReturnUserResponse) {}
+    rpc ChangeLang(ChangeLangRequest) returns (ChangeLangResponse) {}
+}
+
+message CreateOrReturnUserRequest {
+    uint64 userId = 1;
+}
+
+message CreateOrReturnUserResponse {
+    UserObject response = 1;
+}
+
+message ChangeLangRequest {
+    uint64 userId = 1;
+    string lang = 2;
+}
+
+message ChangeLangResponse {
+    bool status = 1;
+}
